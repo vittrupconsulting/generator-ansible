@@ -6,6 +6,8 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "common", autostart: true do |common|
     common.vm.provision "shell", inline: <<-SHELL
+      rm --force /vagrant/corsair_rsa
+      rm --force /vagrant/corsair_rsa.pub
       ssh-keygen -t rsa -q -f /vagrant/corsair_rsa -N "" -C ""
     SHELL
   end
@@ -17,8 +19,8 @@ Vagrant.configure("2") do |config|
     SHELL
   end
 
-  config.vm.define "master", autostart: true do |server|
-    server.vm.provision "shell", inline: <<-SHELL
+  config.vm.define "master", autostart: true do |master|
+    master.vm.provision "shell", inline: <<-SHELL
       sudo mkdir --mode=0700 /root/.ssh
       sudo cp /vagrant/corsair_rsa.pub /root/.ssh/id_rsa.pub
       sudo cp /vagrant/corsair_rsa /root/.ssh/id_rsa
