@@ -1,3 +1,5 @@
 .idea
 /generator/.vagrant/
 /validator/.vagrant/
+/generator/corsair_rsa
+/generator/corsair_rsa.pub
